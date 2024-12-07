@@ -27,7 +27,7 @@ async fn main() -> Result<(), Error> {
     let credentials = Credentials::from_hmac(api_key, secret_key);
     let client = BinanceHttpClient::default().credentials(credentials);
 
-    // Отримання свічок для BTCUSDT з інтервалом 1 хвилина
+    // Get candlesticks for BTCUSDT with 1min interval
     let data = client
         .send(market::klines("BTCUSDT", KlineInterval::Minutes1))
         .await?
@@ -35,7 +35,7 @@ async fn main() -> Result<(), Error> {
         .await?;
     log::info!("{}", data);
 
-    // Отримання останніх 10 свічок для BTCUSDT з інтервалом 1 година
+    // Get last 10 candlesticks for BTCUSDT with 1h interval
     let data = client
         .send(market::klines("BTCUSDT", KlineInterval::Hours1).limit(10))
         .await?
@@ -43,7 +43,7 @@ async fn main() -> Result<(), Error> {
         .await?;
     log::info!("{}", data);
 
-    // Отримання інформації про акаунт
+    // Get account info
     let data = client
         .send(trade::account())
         .await?
