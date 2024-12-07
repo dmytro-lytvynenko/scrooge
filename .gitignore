@@ -1,2 +1,4 @@
 config/config.toml
-target/
+target/debug
+target/*.json
+target/*.TAG
